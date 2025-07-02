@@ -1,8 +1,8 @@
 [project]
 name = "plenopticam"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+description = "Light-field imaging application for plenoptic cameras"
+readme = "README.rst"
 requires-python = ">=3.12"
 dependencies = [
     "certifi>=2025.6.15",
@@ -19,11 +19,8 @@ dependencies = [
     "requests>=2.32.4",
     "scikit-image>=0.25.2",
     "scipy>=1.16.0",
-    "tifffile>=2022.4.8",
+    "tifffile>=2025.6.11",
 ]
 
 [tool.uv.sources]
 depthy = { git = "https://github.com/Doridian/depthy" }
-
-
-# TODO: Change scipy.misc face to scipy.datasets
