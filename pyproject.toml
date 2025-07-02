@@ -1,0 +1,26 @@
+[project]
+name = "plenopticam"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "certifi>=2025.6.15",
+    "color-matcher>=0.6.0",
+    "color-space-converter>=0.1.4",
+    "colour>=0.1.5",
+    "colour-demosaicing>=0.2.6",
+    "depthy>=0.4.0",
+    "docutils>=0.21.2",
+    "imageio>=2.37.0",
+    "numpy>=2.3.1",
+    "pillow>=11.3.0",
+    "pyinstaller>=6.14.1",
+    "requests>=2.32.4",
+    "scikit-image>=0.25.2",
+    "scipy>=1.16.0",
+    "tifffile>=2022.4.8",
+]
+
+
+# TODO: Change scipy.misc face to scipy.datasets

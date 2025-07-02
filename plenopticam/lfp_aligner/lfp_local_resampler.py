@@ -5,7 +5,7 @@ from plenopticam.lfp_aligner.lfp_microlenses import LfpMicroLenses
 # external libs
 import numpy as np
 import functools
-from scipy.interpolate import interp2d, RectBivariateSpline
+from scipy.interpolate import RectBivariateSpline
 
 
 class LfpLocalResampler(LfpMicroLenses):
@@ -17,14 +17,11 @@ class LfpLocalResampler(LfpMicroLenses):
         method = kwargs['method'] if 'method' in kwargs else 'linear'
         method = method if method in ['nearest', 'linear', 'cubic', 'quintic'] else 'linear'
         method = 'cubic' if method == 'quintic' and self._size_pitch < 5 else method
-        interp2d_method = functools.partial(interp2d, kind=method) if method is not None else interp2d
 
-        if method is None:
-            self._interpol_method = RectBivariateSpline
-        elif method == 'nearest':
+        if method == 'nearest':
             self._interpol_method = self._nearest
         else:
-            self._interpol_method = interp2d_method
+            self._interpol_method = RectBivariateSpline
 
     def local_resampling(self):
         """ cropping micro images to square shape while interpolating around their detected center (MIC) """

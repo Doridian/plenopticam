@@ -22,7 +22,7 @@ __license__ = """
 
 
 import numpy as np
-from scipy.interpolate import interp2d
+from scipy.interpolate import RectBivariateSpline
 from color_space_converter import yuv_conv
 
 from plenopticam.misc.normalizer import Normalizer
@@ -54,6 +54,8 @@ def safe_get(any_dict, *keys):
     return any_dict
 
 
+# `RectBivariateSpline` on regular grids, and `bisplrep`/`bisplev` for
+
 def img_resize(img, x_scale=1, y_scale=None, method=None, new_shape=None, norm_opt=False):
     """ perform image interpolation based on scipy lib """
 
@@ -66,6 +68,8 @@ def img_resize(img, x_scale=1, y_scale=None, method=None, new_shape=None, norm_o
     method = 'cubic' if method is None else method
     dtype = img.dtype
 
+    kx_ky = {'linear': 1, 'cubic': 3}.get(method, 3)
+
     if len(img.shape) == 3:
         n, m, p = img.shape
     elif len(img.shape) == 2:
@@ -77,11 +81,13 @@ def img_resize(img, x_scale=1, y_scale=None, method=None, new_shape=None, norm_o
     # construct new 2-D shape
     y_len, x_len = (int(round(n*y_scale)), int(round(m*x_scale))) if x_scale != 1 or y_scale != 1 else new_shape
 
+    print(len(img), len(img[0]), len(img[0][0]), p, n, m, y_len, x_len)
+
     # interpolate
     new_img = np.zeros([y_len, x_len, p])
-    for p in range(p):
-        f = interp2d(range(m), range(n), img[:, :, p], kind=method)
-        new_img[:, :, p] = f(np.linspace(0, m - 1, x_len), np.linspace(0, n - 1, y_len))
+    for pp in range(p):
+        f = RectBivariateSpline(range(n), range(m), img[:, :, pp], kx=kx_ky, ky=kx_ky)
+        new_img[:, :, pp] = f(np.linspace(0, n - 1, y_len), np.linspace(0, m - 1, x_len))
 
     # normalize to the 0-1 range
     new_img = Normalizer(new_img).type_norm(new_min=0, new_max=1) if norm_opt else new_img
