@@ -174,3 +174,5 @@ plenopticam/scripts/**/*.png
 plenopticam/scripts/**/*.jpg
 plenopticam/scripts/**/*.txt
 plenopticam/scripts/**/*.pdf
+
+plenopticam/cfg/cfg.json
