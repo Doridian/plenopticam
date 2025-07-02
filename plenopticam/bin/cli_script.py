@@ -81,54 +81,56 @@ def parse_options(argv, cfg):
             if opt in ("-g", "--gui"):
                 PlenopticamApp().mainloop()
                 sys.exit()
-            if opt in ("-h", "--help"):
+            elif opt in ("-h", "--help"):
                 usage()
                 sys.exit()
-            if opt in ("-f", "--file"):
+            elif opt in ("-f", "--file"):
                 cfg.params[cfg.lfp_path] = arg.strip(" \"\'")
-            if opt in ("-c", "--cali"):
+            elif opt in ("-c", "--cali"):
                 cfg.params[cfg.cal_path] = arg.strip(" \"\'")
-            if opt == "--meta":
+            elif opt == "--meta":
                 cfg.params[cfg.cal_meta] = arg.strip(" \"\'") if arg.strip(" \"\'") else ''
-            if opt in ("-m", "--meth"):
+            elif opt in ("-m", "--meth"):
                 cfg.params[cfg.cal_meth] = arg.strip(" \"\'") if arg.strip(" \"\'") in CALI_METH else CALI_METH[0]
-            if opt in ("-s", "--smpl"):
+            elif opt in ("-s", "--smpl"):
                 cfg.params[cfg.smp_meth] = arg.strip(" \"\'") if arg.strip(" \"\'") in SMPL_METH else SMPL_METH[0]
-            if opt in ("-p", "--patch"):
+            elif opt in ("-p", "--patch"):
                 cfg.params[cfg.ptc_leng] = misc.str2type(arg)
-            if opt in ("-r", "--refo"):
+            elif opt in ("-r", "--refo"):
                 refo_range = misc.str2list(arg)
                 cfg.params[cfg.ran_refo] = refo_range if isinstance(refo_range, list) else [0, 2]
-            if opt == "--rcal":
+            elif opt == "--rcal":
                 cfg.params[cfg.opt_cali] = True
-            if opt == "--vign":
+            elif opt == "--vign":
                 cfg.params[cfg.opt_vign] = True
-            if opt == "--lier":
+            elif opt == "--lier":
                 cfg.params[cfg.opt_lier] = True
-            if opt == "--cont":
+            elif opt == "--cont":
                 cfg.params[cfg.opt_cont] = True
-            if opt == "--colo":
+            elif opt == "--colo":
                 cfg.params[cfg.opt_colo] = True
-            if opt == "--awb":
+            elif opt == "--awb":
                 cfg.params[cfg.opt_awb_] = True
-            if opt == "--sat":
+            elif opt == "--sat":
                 cfg.params[cfg.opt_sat_] = True
-            if opt == "--refi":
+            elif opt == "--refi":
                 cfg.params[cfg.opt_refi] = True
-            if opt == "--pflu":
+            elif opt == "--pflu":
                 cfg.params[cfg.opt_pflu] = True
-            if opt == "--arti":
+            elif opt == "--arti":
                 cfg.params[cfg.opt_arti] = True
-            if opt == "--rota":
+            elif opt == "--rota":
                 cfg.params[cfg.opt_rota] = True
-            if opt == "--dbug":
+            elif opt == "--dbug":
                 cfg.params[cfg.opt_dbug] = True
-            if opt == "--prnt":
+            elif opt == "--prnt":
                 cfg.params[cfg.opt_prnt] = True
-            if opt == "--dpth":
+            elif opt == "--dpth":
                 cfg.params[cfg.opt_dpth] = True
-            if opt == "--remo":
+            elif opt == "--remo":
                 cfg.params[cfg.dir_remo] = True
+            else:
+                raise ValueError("Internal error: Unhandled option: %s" % opt)
 
     return cfg
 
