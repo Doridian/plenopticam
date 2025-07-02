@@ -15,16 +15,16 @@ ax1.set_ylim(0, 1)
 ax2.set_ylim(0, 100)
 
 # sharpness
-ln3 = ax1.plot(range(len(s_list) // 2), s_arr[:len(s_list) // 2, 1].astype(np.float), c='r', label='Sharpness Lytro')
-ln4 = ax1.plot(range(len(s_list) // 2), s_arr[len(s_list) // 2:, 1].astype(np.float), c='b', label='Sharpness Plenopticam')
+ln3 = ax1.plot(range(len(s_list) // 2), s_arr[:len(s_list) // 2, 1].astype(np.float64), c='r', label='Sharpness Lytro')
+ln4 = ax1.plot(range(len(s_list) // 2), s_arr[len(s_list) // 2:, 1].astype(np.float64), c='b', label='Sharpness Plenopticam')
 
 # contrast
-#ln1 = ax2.plot(range(len(s_list) // 2), s_arr[:len(s_list) // 2, 2].astype(np.float), c='k', label='Contrast Lytro')
-#ln2 = ax2.plot(range(len(s_list) // 2), s_arr[len(s_list) // 2:, 2].astype(np.float), c='g', label='Contrast Plenopticam')
+#ln1 = ax2.plot(range(len(s_list) // 2), s_arr[:len(s_list) // 2, 2].astype(np.float64), c='k', label='Contrast Lytro')
+#ln2 = ax2.plot(range(len(s_list) // 2), s_arr[len(s_list) // 2:, 2].astype(np.float64), c='g', label='Contrast Plenopticam')
 
 # BRISQUE
-ln1 = ax2.plot(range(len(s_list) // 2), s_arr[:len(s_list) // 2, 3].astype(np.float), c='k', label='BRISQUE Lytro')
-ln2 = ax2.plot(range(len(s_list) // 2), s_arr[len(s_list) // 2:, 3].astype(np.float), c='g', label='BRISQUE Plenopticam')
+ln1 = ax2.plot(range(len(s_list) // 2), s_arr[:len(s_list) // 2, 3].astype(np.float64), c='k', label='BRISQUE Lytro')
+ln2 = ax2.plot(range(len(s_list) // 2), s_arr[len(s_list) // 2:, 3].astype(np.float64), c='g', label='BRISQUE Plenopticam')
 
 lns = ln1+ln2+ln3+ln4
 labs = [l.get_label() for l in lns]

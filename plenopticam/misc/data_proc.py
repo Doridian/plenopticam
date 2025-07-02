@@ -81,8 +81,6 @@ def img_resize(img, x_scale=1, y_scale=None, method=None, new_shape=None, norm_o
     # construct new 2-D shape
     y_len, x_len = (int(round(n*y_scale)), int(round(m*x_scale))) if x_scale != 1 or y_scale != 1 else new_shape
 
-    print(len(img), len(img[0]), len(img[0][0]), p, n, m, y_len, x_len)
-
     # interpolate
     new_img = np.zeros([y_len, x_len, p])
     for pp in range(p):

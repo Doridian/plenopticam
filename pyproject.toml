@@ -10,7 +10,7 @@ dependencies = [
     "color-space-converter>=0.1.4",
     "colour>=0.1.5",
     "colour-demosaicing>=0.2.6",
-    "depthy>=0.4.0",
+    "depthy",
     "docutils>=0.21.2",
     "imageio>=2.37.0",
     "numpy>=2.3.1",
@@ -21,6 +21,9 @@ dependencies = [
     "scipy>=1.16.0",
     "tifffile>=2022.4.8",
 ]
+
+[tool.uv.sources]
+depthy = { git = "https://github.com/Doridian/depthy" }
 
 
 # TODO: Change scipy.misc face to scipy.datasets
