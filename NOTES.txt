@@ -1,0 +1,1 @@
+uv run cli -f ~/Pictures/Lytro/DCIM/100PHOTO/IMAGE.LFR -c ~/Pictures/Lytro/caldata-*.tar -m vign-fit --rcal --patch 9 --refi
