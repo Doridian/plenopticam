@@ -116,7 +116,7 @@ class LfpShiftAndSum(LfpViewpoints):
                         return False
 
                     # print status
-                    percentage = ((j*patch_len+i+1)/patch_len**2+a-a_list[0])/(a_list[-1]-a_list[0])*100
+                    percentage = ((j*patch_len+i+1)/patch_len**2+a-a_list[0])/(a_list[1]-a_list[0])*100
                     self.sta.progress(percentage, self.cfg.params[self.cfg.opt_prnt])
 
             # crop refocused image for consistent image dimensions
