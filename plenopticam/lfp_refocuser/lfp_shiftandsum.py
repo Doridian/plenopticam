@@ -306,13 +306,14 @@ class LfpShiftAndSum(LfpViewpoints):
     def validate_range(self):
 
         n = len(self.cfg.params[self.cfg.ran_refo])
-        if n == 2:
-            one, two = self.cfg.params[self.cfg.ran_refo]
-            if one >= two:
-                self.cfg.params[self.cfg.ran_refo][1] = one + 1
-                self.sta.status_msg('Refocusing range is not positive')
+        if n == 2 or n == 3:
+            s, e, step = self.cfg.params[self.cfg.ran_refo]
+            if s >= e:
+                raise ValueError("Refocusing range is not positive")
+            if step <= 0:
+                raise ValueError("Refocusing step size must be positive")
         else:
-            raise ValueError("Refocusing range list is supposed to contain only two entries")
+            raise ValueError("Refocusing range list is supposed to contain two or three entries")
 
     def all_in_focus(self):
         pass
