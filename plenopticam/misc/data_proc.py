@@ -54,7 +54,6 @@ def safe_get(any_dict, *keys):
     return any_dict
 
 
-# `RectBivariateSpline` on regular grids, and `bisplrep`/`bisplev` for
 
 def img_resize(img, x_scale=1, y_scale=None, method=None, new_shape=None, norm_opt=False):
     """ perform image interpolation based on scipy lib """
